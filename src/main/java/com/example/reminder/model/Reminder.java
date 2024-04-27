@@ -1,4 +1,4 @@
-package com.example.reminder.entity;
+package com.example.reminder.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -20,5 +20,5 @@ public class Reminder {
     private String description;
     private LocalDateTime remind;
     @ManyToOne
-    private User users;
+    private User user;
 }

@@ -1,7 +1,9 @@
 package com.example.reminder.service;
 
-import com.example.reminder.entity.User;
-import com.example.reminder.model.UserDto;
+import com.example.reminder.model.User;
+import com.example.reminder.model.dto.UserDto;
+import com.example.reminder.model.mapper.ReminderMapper;
+import com.example.reminder.model.mapper.UserMapper;
 import com.example.reminder.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,7 @@ import java.util.Optional;
 public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
+    private final ReminderMapper reminderMapper;
 
     public List<UserDto> getAll() {
         List<User> users = userRepository.findAll();
@@ -38,7 +41,7 @@ public class UserService {
         userToUpdate.setUsername(updateDto.getUsername());
         userToUpdate.setEmail(updateDto.getEmail());
         userToUpdate.setTelegram(updateDto.getTelegram());
-        userToUpdate.setReminder(updateDto.getReminder());
+        userToUpdate.setReminders(reminderMapper.toEntity(updateDto.getReminders()));
         return userMapper.toDto(userToUpdate);
     }
 

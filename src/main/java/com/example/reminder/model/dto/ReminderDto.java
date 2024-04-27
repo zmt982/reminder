@@ -1,18 +1,19 @@
-package com.example.reminder.model;
+package com.example.reminder.model.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.text.DateFormat;
+import java.time.LocalDateTime;
 import java.util.Set;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 public class ReminderDto {
+    private Long id;
     private String title;
     private String description;
-    private DateFormat remind;
-    private Set<UserDto> users;
+    private LocalDateTime remind;
+    private Long userId;
 }

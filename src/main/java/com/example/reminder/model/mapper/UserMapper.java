@@ -1,35 +1,18 @@
-package com.example.reminder.service;
+package com.example.reminder.model.mapper;
 
 import com.example.reminder.model.User;
 import com.example.reminder.model.dto.UserDto;
+import org.mapstruct.Mapper;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
-public class UserMapper {
-    public UserDto toDto(User entity) {
-        UserDto userDto = new UserDto();
-        userDto.setUsername(entity.getUsername());
-        userDto.setEmail(entity.getEmail());
-        userDto.setTelegram(entity.getTelegram());
-        userDto.setReminder(entity.getReminder());
-        return userDto;
-    }
+@Mapper(componentModel = "spring")
+public interface UserMapper {
+    User toEntity(UserDto userDto);
 
-    public User toEntity(UserDto userDto) {
-        User entity = new User();
-        entity.setUsername(userDto.getUsername());
-        entity.setEmail(userDto.getEmail());
-        entity.setTelegram(userDto.getTelegram());
-        entity.setReminder(userDto.getReminder());
-        return entity;
-    }
+    UserDto toDto(User user);
 
-    public List<UserDto> toDto(List<User> entities) {
-        return entities.stream().map(this::toDto).collect(Collectors.toList());
-    }
+    List<User> toEntity(List<UserDto> users);
 
-    public List<User> toEntity(List<UserDto> dtoList) {
-        return dtoList.stream().map(this::toEntity).collect(Collectors.toList());
-    }
+    List<UserDto> toDto(List<User> users);
 }

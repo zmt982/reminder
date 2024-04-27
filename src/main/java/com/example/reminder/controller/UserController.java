@@ -1,6 +1,6 @@
 package com.example.reminder.controller;
 
-import com.example.reminder.model.UserDto;
+import com.example.reminder.model.dto.UserDto;
 import com.example.reminder.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
