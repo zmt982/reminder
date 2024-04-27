@@ -1,7 +1,7 @@
 package com.example.reminder.service;
 
-import com.example.reminder.entity.Reminder;
-import com.example.reminder.model.ReminderDto;
+import com.example.reminder.model.Reminder;
+import com.example.reminder.model.dto.ReminderDto;
 import lombok.RequiredArgsConstructor;
 
 import java.util.List;

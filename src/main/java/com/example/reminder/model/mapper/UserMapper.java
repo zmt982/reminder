@@ -1,7 +1,7 @@
 package com.example.reminder.service;
 
-import com.example.reminder.entity.User;
-import com.example.reminder.model.UserDto;
+import com.example.reminder.model.User;
+import com.example.reminder.model.dto.UserDto;
 
 import java.util.List;
 import java.util.stream.Collectors;
