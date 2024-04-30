@@ -11,7 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import java.sql.Time;
+import java.time.LocalTime;
 import java.util.Date;
 import java.util.Optional;
 
@@ -43,7 +43,7 @@ public class ReminderService {
         return reminderMapper.toDto(reminderToUpdate);
     }
 
-    public Page<ReminderDto> findRemindersByName(String name, Pageable pageable) {
+    public Page<ReminderDto> getRemindersByName(String name, Pageable pageable) {
         Optional<Page<Reminder>> optionalRemindersAllByName = Optional.ofNullable(reminderRepository
                 .findRemindersByName(name, pageable));
         Page<Reminder> remindersAllByName = optionalRemindersAllByName.orElseThrow(() ->
@@ -51,7 +51,7 @@ public class ReminderService {
         return reminderMapper.toDto(remindersAllByName);
     }
 
-    public Page<ReminderDto> findRemindersByDescription(String description, Pageable pageable) {
+    public Page<ReminderDto> getRemindersByDescription(String description, Pageable pageable) {
         Optional<Page<Reminder>> optionalRemindersAllByDescription = Optional.ofNullable(reminderRepository
                 .findRemindersByDescription(description, pageable));
         Page<Reminder> remindersAllByDescription = optionalRemindersAllByDescription.orElseThrow(() ->
@@ -59,7 +59,7 @@ public class ReminderService {
         return reminderMapper.toDto(remindersAllByDescription);
     }
 
-    public Page<ReminderDto> findRemindersByDate(Date date, Pageable pageable) {
+    public Page<ReminderDto> getRemindersByDate(Date date, Pageable pageable) {
         Optional<Page<Reminder>> optionalRemindersAllByDate = Optional.ofNullable(reminderRepository
                 .findRemindersByDate(date, pageable));
         Page<Reminder> remindersAllByDate = optionalRemindersAllByDate.orElseThrow(() ->
@@ -67,7 +67,7 @@ public class ReminderService {
         return reminderMapper.toDto(remindersAllByDate);
     }
 
-    public Page<ReminderDto> findRemindersByTime(Time time, Pageable pageable) {
+    public Page<ReminderDto> getRemindersByTime(LocalTime time, Pageable pageable) {
         Optional<Page<Reminder>> optionalRemindersAllByTime = Optional.ofNullable(reminderRepository
                 .findRemindersByTime(time, pageable));
         Page<Reminder> remindersAllByTime = optionalRemindersAllByTime.orElseThrow(() ->
@@ -75,7 +75,7 @@ public class ReminderService {
         return reminderMapper.toDto(remindersAllByTime);
     }
 
-    public Page<ReminderDto> findRemindersSortedByTitle(Pageable pageable) {
+    public Page<ReminderDto> getRemindersSortedByTitle(Pageable pageable) {
         Page<Reminder> remindersSortedByTitle = reminderRepository.findRemindersSortedByTitle(pageable);
         if (!remindersSortedByTitle.hasContent()) {
             throw new ReminderNotFoundException("Reminders not found");
@@ -83,7 +83,7 @@ public class ReminderService {
         return reminderMapper.toDto(remindersSortedByTitle);
     }
 
-    public Page<ReminderDto> findRemindersSortedByRemind(Pageable pageable) {
+    public Page<ReminderDto> getRemindersSortedByRemind(Pageable pageable) {
         Page<Reminder> remindersSortedByRemind = reminderRepository.findRemindersSortedByRemind(pageable);
         if (!remindersSortedByRemind.hasContent()) {
             throw new ReminderNotFoundException("Reminders not found");
@@ -91,7 +91,7 @@ public class ReminderService {
         return reminderMapper.toDto(remindersSortedByRemind);
     }
 
-    public Page<ReminderDto> findRemindersByTitleContaining(String title, Pageable pageable) {
+    public Page<ReminderDto> getRemindersByTitleContaining(String title, Pageable pageable) {
         Page<Reminder> remindersByTitleContaining = reminderRepository.findRemindersByTitleContaining(title, pageable);
         if (!remindersByTitleContaining.hasContent()) {
             throw new ReminderNotFoundException("Reminders not found");

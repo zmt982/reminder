@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import java.util.Set;
 
 @Data
-@AllArgsConstructor
+//@AllArgsConstructor
 public class ReminderDto {
     private Long id;
     private String title;

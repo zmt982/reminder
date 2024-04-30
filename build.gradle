@@ -26,6 +26,7 @@ dependencies {
 	annotationProcessor 'org.mapstruct:mapstruct-processor:1.4.2.Final'
 	runtimeOnly 'org.postgresql:postgresql'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.liquibase:liquibase-core:4.27.0'
 }
 
 tasks.named('test') {

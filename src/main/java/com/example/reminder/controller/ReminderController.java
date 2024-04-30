@@ -8,11 +8,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.sql.Time;
+import java.time.LocalTime;
 import java.util.Date;
 
 @RestController
-@RequestMapping("http://domain/api/v1/reminder/")
+@RequestMapping("/api/v1/reminder/")
 @RequiredArgsConstructor
 public class ReminderController {
     private final ReminderService reminderService;
@@ -35,36 +35,36 @@ public class ReminderController {
 
     @GetMapping("/{name}")
     public ResponseEntity<Page<ReminderDto>> getRemindersByName(String name, Pageable pageable) {
-        return ResponseEntity.ok(reminderService.findRemindersByName(name, pageable));
+        return ResponseEntity.ok(reminderService.getRemindersByName(name, pageable));
     }
 
     @GetMapping("/{description}")
     public ResponseEntity<Page<ReminderDto>> getRemindersByDescription(String description, Pageable pageable) {
-        return ResponseEntity.ok(reminderService.findRemindersByDescription(description, pageable));
+        return ResponseEntity.ok(reminderService.getRemindersByDescription(description, pageable));
     }
 
     @GetMapping("/{date}")
     public ResponseEntity<Page<ReminderDto>> getRemindersByDate(Date date, Pageable pageable) {
-        return ResponseEntity.ok(reminderService.findRemindersByDate(date, pageable));
+        return ResponseEntity.ok(reminderService.getRemindersByDate(date, pageable));
     }
 
     @GetMapping("/{time}")
-    public ResponseEntity<Page<ReminderDto>> getRemindersByTime(Time time, Pageable pageable) {
-        return ResponseEntity.ok(reminderService.findRemindersByTime(time, pageable));
+    public ResponseEntity<Page<ReminderDto>> getRemindersByTime(LocalTime time, Pageable pageable) {
+        return ResponseEntity.ok(reminderService.getRemindersByTime(time, pageable));
     }
 
     @GetMapping("/sorted-by-title")
     public ResponseEntity<Page<ReminderDto>> getRemindersSortedByTitle(Pageable pageable) {
-        return ResponseEntity.ok(reminderService.findRemindersSortedByTitle(pageable));
+        return ResponseEntity.ok(reminderService.getRemindersSortedByTitle(pageable));
     }
 
     @GetMapping("/sorted-by-remind")
     public ResponseEntity<Page<ReminderDto>> getRemindersSortedByRemind(Pageable pageable) {
-        return ResponseEntity.ok(reminderService.findRemindersSortedByRemind(pageable));
+        return ResponseEntity.ok(reminderService.getRemindersSortedByRemind(pageable));
     }
 
     @GetMapping("/sorted-by-title-contain")
     public ResponseEntity<Page<ReminderDto>> getRemindersByTitleContainig(String string, Pageable pageable) {
-        return ResponseEntity.ok(reminderService.findRemindersByTitleContaining(string, pageable));
+        return ResponseEntity.ok(reminderService.getRemindersByTitleContaining(string, pageable));
     }
 }

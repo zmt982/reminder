@@ -6,9 +6,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import java.sql.Time;
+import java.time.LocalTime;
 import java.util.Date;
-import java.util.Optional;
 
 public interface ReminderRepository extends JpaRepository<Reminder, Long> {
 
@@ -18,7 +17,7 @@ public interface ReminderRepository extends JpaRepository<Reminder, Long> {
 
     Page<Reminder> findRemindersByDate(Date date, Pageable pageable);
 
-    Page<Reminder> findRemindersByTime(Time time, Pageable pageable);
+    Page<Reminder> findRemindersByTime(LocalTime time, Pageable pageable);
 
     @Query("SELECT r FROM Reminder r ORDER BY r.title")
     Page<Reminder> findRemindersSortedByTitle(Pageable pageable);

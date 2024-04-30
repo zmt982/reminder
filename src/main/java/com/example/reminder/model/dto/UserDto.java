@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import java.util.Set;
 
 @Data
-@AllArgsConstructor
+//@AllArgsConstructor
 public class UserDto {
     private Long id;
     private String username;

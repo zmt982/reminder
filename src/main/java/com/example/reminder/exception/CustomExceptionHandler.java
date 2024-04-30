@@ -1,4 +1,4 @@
-package com.example.reminder.service;
+package com.example.reminder.exception;
 
 import com.example.reminder.exception.ReminderNotFoundException;
 import org.springframework.http.HttpStatus;
