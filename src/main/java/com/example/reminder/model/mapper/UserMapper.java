@@ -5,14 +5,47 @@ import com.example.reminder.model.dto.UserDto;
 import org.mapstruct.Mapper;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-@Mapper(componentModel = "spring")
-public interface UserMapper {
-    User toEntity(UserDto userDto);
+//@Mapper(componentModel = "spring")
+//public interface UserMapper {
+//    UserDto toDto(User user);
+//
+//    User toEntity(UserDto userDto);
+//
+//    List<UserDto> toDto(List<User> users);
+//
+//    List<User> toEntity(List<UserDto> users);
+//}
 
-    UserDto toDto(User user);
+public class UserMapper {
+    ReminderMapper reminderMapper;
 
-    List<User> toEntity(List<UserDto> users);
+    public UserDto toDto(User entity) {
+        UserDto userDto = new UserDto();
+        userDto.setId(entity.getId());
+        userDto.setUsername(entity.getUsername());
+        userDto.setEmail(entity.getEmail());
+        userDto.setTelegram(entity.getTelegram());
+        userDto.setReminders(reminderMapper.toDto(entity.getReminders()));
+        return userDto;
+    }
 
-    List<UserDto> toDto(List<User> users);
+    public User toEntity(UserDto userDto) {
+        User entity = new User();
+        entity.setId(userDto.getId());
+        entity.setUsername(userDto.getUsername());
+        entity.setEmail(userDto.getEmail());
+        entity.setTelegram(userDto.getTelegram());
+        entity.setReminders(reminderMapper.toEntity(userDto.getReminders()));
+        return entity;
+    }
+
+    public List<UserDto> toDto(List<User> entities) {
+        return entities.stream().map(this::toDto).collect(Collectors.toList());
+    }
+
+    public List<User> toEntity(List<UserDto> users) {
+        return users.stream().map(this::toEntity).collect(Collectors.toList());
+    }
 }

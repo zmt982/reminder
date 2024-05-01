@@ -13,9 +13,13 @@ import java.util.Date;
 
 @RestController
 @RequestMapping("/api/v1/reminder/")
-@RequiredArgsConstructor
+//@RequiredArgsConstructor
 public class ReminderController {
     private final ReminderService reminderService;
+
+    public ReminderController(ReminderService reminderService) {
+        this.reminderService = reminderService;
+    }
 
     @PostMapping("/create")
     public ResponseEntity<ReminderDto> addReminder(@RequestBody ReminderDto addDto) {
@@ -33,22 +37,22 @@ public class ReminderController {
         return ResponseEntity.ok(reminderService.updateReminderById(id, updateDto));
     }
 
-    @GetMapping("/{name}")
+    @GetMapping("/name/{name}")
     public ResponseEntity<Page<ReminderDto>> getRemindersByName(String name, Pageable pageable) {
         return ResponseEntity.ok(reminderService.getRemindersByName(name, pageable));
     }
 
-    @GetMapping("/{description}")
+    @GetMapping("/description/{description}")
     public ResponseEntity<Page<ReminderDto>> getRemindersByDescription(String description, Pageable pageable) {
         return ResponseEntity.ok(reminderService.getRemindersByDescription(description, pageable));
     }
 
-    @GetMapping("/{date}")
+    @GetMapping("/date/{date}")
     public ResponseEntity<Page<ReminderDto>> getRemindersByDate(Date date, Pageable pageable) {
         return ResponseEntity.ok(reminderService.getRemindersByDate(date, pageable));
     }
 
-    @GetMapping("/{time}")
+    @GetMapping("/time/{time}")
     public ResponseEntity<Page<ReminderDto>> getRemindersByTime(LocalTime time, Pageable pageable) {
         return ResponseEntity.ok(reminderService.getRemindersByTime(time, pageable));
     }
@@ -63,7 +67,7 @@ public class ReminderController {
         return ResponseEntity.ok(reminderService.getRemindersSortedByRemind(pageable));
     }
 
-    @GetMapping("/sorted-by-title-contain")
+    @GetMapping("/sorted-by-title-contain/{string}")
     public ResponseEntity<Page<ReminderDto>> getRemindersByTitleContainig(String string, Pageable pageable) {
         return ResponseEntity.ok(reminderService.getRemindersByTitleContaining(string, pageable));
     }

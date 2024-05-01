@@ -6,6 +6,7 @@ import com.example.reminder.model.dto.ReminderDto;
 import com.example.reminder.model.mapper.ReminderMapper;
 import com.example.reminder.repository.ReminderRepository;
 import com.example.reminder.repository.UserRepository;
+import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,7 +21,7 @@ import java.util.Optional;
 public class ReminderService {
     private final ReminderRepository reminderRepository;
     private final ReminderMapper reminderMapper;
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
 
     public ReminderDto addReminder(ReminderDto addDto) {
         Reminder reminderToAdd = reminderMapper.toEntity(addDto);
@@ -34,7 +35,7 @@ public class ReminderService {
 
     public ReminderDto updateReminderById(Long id, ReminderDto updateDto) {
         Optional<Reminder> reminderToFind = reminderRepository.findById(id);
-        Reminder reminderToUpdate = reminderToFind.orElseThrow(() -> new RuntimeException("No reminder to found"));
+        Reminder reminderToUpdate = reminderToFind.orElseThrow(() -> new RuntimeException("No reminder found"));
         reminderToUpdate.setTitle(updateDto.getTitle());
         reminderToUpdate.setDescription(updateDto.getDescription());
         reminderToUpdate.setRemind(updateDto.getRemind());
